@@ -11,7 +11,7 @@ def is_square(matrix):
     return True
 
 
-def print_matrix(matrix):
+def print(matrix):
     matrix_printed = ""
     for row in matrix:
         matrix_printed += str(row) + "\n"
@@ -34,7 +34,7 @@ def trace(matrix):
 
         return trace_result
 
-    return f"The given matrix: \n{print_matrix(matrix)}is not a square matrix!"
+    return f"The given matrix: \n{print(matrix)}is not a square matrix!"
 
 
 def determinant(matrix):
@@ -57,5 +57,5 @@ def determinant(matrix):
 
         return determinant_result
 
-    return f"The given matrix: \n{print_matrix(matrix)}is not a square matrix!"
+    return f"The given matrix: \n{print(matrix)}is not a square matrix!"
 
