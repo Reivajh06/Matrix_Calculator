@@ -11,12 +11,38 @@ def is_square(matrix):
     return True
 
 
-def print(matrix):
+def print_matrix(matrix):
     matrix_printed = ""
     for row in matrix:
         matrix_printed += str(row) + "\n"
 
-    return matrix_printed
+    print(matrix_printed)
+
+
+def create_matrix(rows, columns, elements):
+    """
+    Creates the desired matrix
+    :param rows: Amount of rows the user matrix will have
+    :param columns: Amount of columns the user matrix will have
+    :param elements: Amount of elements within the matrix
+    :return: prints the matrix created with the characteristics the user desired, if the amount of elements does not match with
+    the amount of rows and columns it has (it has more or less elements than rows * columns) it will print a message
+    """
+    if len(elements) is not rows * columns:
+        print(f"The number of elements introduced should be {rows * columns} instead of {len(elements)}")
+
+    matrix = []
+
+    for i in range(0, rows):
+        row = []
+
+        for j in range(0, columns):
+            row.append(int(elements[j]))
+
+        matrix.append(row)
+        elements = elements[j + 1:]
+
+    print_matrix(matrix)
 
 
 def trace(matrix):
@@ -34,7 +60,7 @@ def trace(matrix):
 
         return trace_result
 
-    return f"The given matrix: \n{print(matrix)}is not a square matrix!"
+    return f"The given matrix: \n{print_matrix(matrix)}is not a square matrix!"
 
 
 def determinant(matrix):
@@ -57,5 +83,5 @@ def determinant(matrix):
 
         return determinant_result
 
-    return f"The given matrix: \n{print(matrix)}is not a square matrix!"
+    return f"The given matrix: \n{print_matrix(matrix)}is not a square matrix!"
 

@@ -1,31 +1,18 @@
 import src.matrix_operations
+import re
 
 
-def run_calculator(user_response):
-    pass
+def run_calculator():
+    user_operation = input("Introduce which operation to do: sum/subtract/multiply/trace/determinant/transpose/identity matrix/scalar multiplication:\n ")
 
-def create_matrix(rows, columns, elements):
+    rows = input("Introduce how many rows the matrix has: ")
 
-    if len(elements) is not rows * columns:
-        print(f"The number of elements introduced should be {rows * columns} instead of {len(elements)}")
+    columns = input("Introduce how many columns the matrix has: ")
 
-    matrix = []
+    elements = input("Introduce each element within the matrix separated by single spaces: ")
 
-    for i in range(rows):
-        row = []
-        for j in range(columns):
-            row.append(int(elements[columns]))
+    src.matrix_operations.create_matrix(int(rows), int(columns), re.split(r" +", elements.strip()))
 
-        matrix = matrix + row
 
-    src.matrix_operations.print(matrix)
+run_calculator()
 
-user_operation = input("Introduce which operation to do: sum/subtract/multiply/trace/determinant/transpose/identity matrix/scalar multiplication")
-
-rows = input("Introduce how many rows the matrix has: ")
-
-columns = input("Introduce how many columns the matrix has: ")
-
-elements = input("Introduce each element within the matrix separated by single spaces: ")
-
-create_matrix(int(rows), int(columns), elements.split(' '))
