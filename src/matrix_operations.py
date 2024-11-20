@@ -44,6 +44,40 @@ def create_matrix(rows, columns, elements):
 
     print_matrix(matrix)
 
+def sum(matrix1, matrix2):
+    ''' Method which adds a matrix to another one using the normal procedure, the elements in the same position add to make the element in the result matrix'''
+
+
+    rows = len(matrix1)
+    columns = len(matrix1[0])
+    sum_result = []
+
+    for i in range(rows):
+        result_row = []
+        for j in range(columns):
+            addition = matrix1[i][j] + matrix2[i][j]
+            result_row.append(addition)
+        sum_result.append(result_row)
+    return sum_result
+
+
+def subtract(matrix1, matrix2):
+    ''' Method which subtracts a matrix to another one using the normal procedure, the elements in the same position subtract to make the element in the result matrix'''
+
+
+    rows = len(matrix1)
+    columns = len(matrix1[0])
+    subtract_result = []
+
+    for i in range(rows):
+        result_row = []
+        for j in range(columns):
+            difference = matrix1[i][j] - matrix2[i][j]
+            result_row.append(difference)
+        subtract_result.append(result_row)
+    return subtract_result
+
+
 
 def trace(matrix):
     """
