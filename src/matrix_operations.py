@@ -44,6 +44,7 @@ def create_matrix(rows, columns, elements):
 
     print_matrix(matrix)
 
+
 def sum(matrix1, matrix2):
     ''' Method which adds a matrix to another one using the normal procedure, the elements in the same position add to make the element in the result matrix'''
 
@@ -61,7 +62,7 @@ def sum(matrix1, matrix2):
     return sum_result
 
 
-def subtract(matrix1, matrix2):
+def subtraction(matrix1, matrix2):
     ''' Method which subtracts a matrix to another one using the normal procedure, the elements in the same position subtract to make the element in the result matrix'''
 
 
