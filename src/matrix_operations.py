@@ -1,3 +1,6 @@
+import re
+
+
 def is_square(matrix):
     """
     Evaluates whether a matrix is square or not
@@ -19,15 +22,18 @@ def print_matrix(matrix):
     print(matrix_printed)
 
 
-def create_matrix(rows, columns, elements):
+def create_matrix():
     """
     Creates the desired matrix
-    :param rows: Amount of rows the user matrix will have
-    :param columns: Amount of columns the user matrix will have
-    :param elements: Amount of elements within the matrix
     :return: prints the matrix created with the characteristics the user desired, if the amount of elements does not match with
     the amount of rows and columns it has (it has more or less elements than rows * columns) it will print a message
     """
+    rows = int(input("Introduce how many rows the matrix has: "))
+
+    columns = int(input("Introduce how many columns the matrix has: "))
+
+    elements = re.split(" +", input("Introduce each element within the matrix separated by single spaces: ").strip())
+
     if len(elements) is not rows * columns:
         print(f"The number of elements introduced should be {rows * columns} instead of {len(elements)}")
 
@@ -43,6 +49,7 @@ def create_matrix(rows, columns, elements):
         elements = elements[j + 1:]
 
     print_matrix(matrix)
+    return matrix
 
 
 def add(matrix1, matrix2):
