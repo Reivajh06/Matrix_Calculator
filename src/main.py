@@ -29,7 +29,7 @@ def run_calculator(user_operation):
 
         print_matrix(subtract(matrixes[0], matrixes[1]))
         
-    if user_operation == 'transposed':
+    if user_operation == 'transpose':
         print_matrix(transposed(create_matrix_based_on_operation()))
     
     if user_operation == 'trace':
