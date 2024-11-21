@@ -1,9 +1,43 @@
 from src.matrix_operations import *
 import re
+import ollama
 
 
-def create_matrix_based_on_operation(number_of_matrixes=1):
-    if number_of_matrixes == 2:
+NUM_MATRICES_BY_OPERATION = {
+    'add': 2,
+    'subtract': 2,
+    'multiply': 2,
+    'transpose': 1,
+    'trace': 1,
+    'determinant': 1,
+}
+
+
+def calculate(user_operation, matrices):
+    if user_operation == 'add':
+        return add(matrices[0], matrices[1])
+
+    elif user_operation == 'subtract':
+        return subtract(matrices[0], matrices[1])
+
+    elif user_operation == 'multiply':
+        return multiply(matrices[0], matrices[1])
+
+    elif user_operation == 'transpose':
+        return transpose(matrices)
+
+    elif user_operation == 'trace':
+        return trace(matrices)
+
+    elif user_operation == 'determinant':
+        return determinant(matrices)
+
+    else:
+        raise ValueError("Unknown operation")
+
+
+def create_matrix_based_on_operation(number_of_matrices=1):
+    if number_of_matrices == 2:
         matrix1 = create_matrix()
         matrix2 = create_matrix()
 
@@ -13,35 +47,39 @@ def create_matrix_based_on_operation(number_of_matrixes=1):
 
 
 def run_calculator(user_operation):
+    matrices = create_matrix_based_on_operation(NUM_MATRICES_BY_OPERATION[user_operation])
 
-    if user_operation == 'add':
-        matrixes = create_matrix_based_on_operation(2)
+    result = calculate(user_operation, matrices)
 
-        print_matrix(add(matrixes[0], matrixes[1]))
+    if isinstance(result, float):
+        print(result)
 
-    if user_operation == 'subtract':
-        matrixes = create_matrix_based_on_operation(2)
+    print_matrix(result)
 
-        print_matrix(subtract(matrixes[0], matrixes[1]))
+    user_help = input("Do you need an explanation for the operation result from the AI?: yes/no ")
 
-    if user_operation == 'multiply':
-        matrixes = create_matrix_based_on_operation(2)
+    if user_help == 'yes':
+        input_matrices = f"{matrices[0]} {matrices[1]}" if isinstance(matrices, tuple) else str(matrices)
 
-        print_matrix(subtract(matrixes[0], matrixes[1]))
+        prompt = f"""
+        You're a Teacher AI that excels at matrix operations.
         
-    if user_operation == 'transpose':
-        print_matrix(transpose(create_matrix_based_on_operation()))
-    
-    if user_operation == 'trace':
-        print_matrix(trace(create_matrix_based_on_operation()))
+        Explain the result of the operation {user_operation} step by step:
+        
+        {input_matrices} = {result}
+        
+        Answer in a friendly way in plain text only. Represent matrices in a pretty way
+        """
 
-    if user_operation == 'determinant':
-        print_matrix(determinant(create_matrix_based_on_operation()))
+        response = ollama.generate(model='qwen2-math:7b-instruct-q8_0', prompt=prompt, stream=True)
+
+        for part in response:
+            print(part["response"], end='')
 
 
 
+if __name__ == "__main__":
+    user_operation = input("Introduce which operation you want to do: add/subtract/multiply/trace/determinant/transpose/identity matrix/scalar multiplication:\n ")
 
-
-user_operation = input("Introduce which operation you want to do: add/subtract/multiply/trace/determinant/transpose/identity matrix/scalar multiplication:\n ")
-run_calculator(user_operation.strip().lower())
+    run_calculator(user_operation.strip().lower())
 

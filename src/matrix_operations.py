@@ -15,11 +15,16 @@ def is_square(matrix):
 
 
 def print_matrix(matrix):
-    matrix_printed = ""
-    for row in matrix:
-        matrix_printed += str(row) + "\n"
+    print(matrix_to_string(matrix))
 
-    print(matrix_printed)
+
+def matrix_to_string(matrix):
+    matrix_str = ""
+
+    for row in matrix:
+        matrix_str += str(row) + "\n"
+
+    return matrix_str
 
 
 def create_matrix():
@@ -49,6 +54,8 @@ def create_matrix():
         elements = elements[j + 1:]
 
     print_matrix(matrix)
+    print("----------------------\n")
+
     return matrix
 
 
@@ -89,9 +96,11 @@ def subtract(matrix1, matrix2):
         subtract_result.append(result_row)
     return subtract_result
 
+
 def multiply(matrix1, matrix2):
     """
-    Method which multiplies two matrixes using the normal procedure.
+    Method which multiplies two matrices using the normal procedure.
+    Method which multiplies two matrices using the normal procedure.
     There must be the same number of columns in matrix1 as there are rows in matrix2
     """
     rows_1 = len(matrix1)
@@ -108,6 +117,7 @@ def multiply(matrix1, matrix2):
                 result[num_row1][num_col2] += matrix1[num_row1][num_col1] * matrix2[num_col1][num_col2]
     return result
 
+
 def transpose(matrix):
     """
     Method which calculates the transposed maatrix of a matrix
@@ -119,7 +129,8 @@ def transpose(matrix):
         for num_col in range(columns_trans):
             transposed_matrix[num_row][num_col] = matrix[num_col][num_row]
     return transposed_matrix
-                    
+
+
 def trace(matrix):
     """
     Method which evaluate the trace of a square matrix
