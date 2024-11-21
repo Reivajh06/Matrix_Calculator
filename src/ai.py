@@ -1,3 +1,5 @@
+import time
+
 import ollama
 
 LLM_MODEL = 'qwen2-math:7b-instruct-q8_0'
@@ -24,7 +26,7 @@ def explain_with_ai(user_operation, matrices, result):
 
     for part in response:
         print(part["response"], end='')
-
+        time.sleep(0.1)
 
 def ai_is_available():
     try:
