@@ -120,7 +120,7 @@ def multiply(matrix1, matrix2):
 
 def transpose(matrix):
     """
-    Method which calculates the transposed maatrix of a matrix
+    Method which calculates the transposed matrix of a matrix.
     """
     rows_trans = len(matrix[0])
     columns_trans = len(matrix)
@@ -171,3 +171,44 @@ def determinant(matrix):
 
     return f"The given matrix: \n{print_matrix(matrix)}is not a square matrix!"
 
+
+
+def multiply_scalar(matrix, scalar):
+    """
+    Method which calculates the multiplication of a matrix
+    by a scalar number, returning a new matrix.
+    """
+    multipled_matrix = []
+    
+    for row in matrix:
+        row_list = []
+        for column in row:
+            row_list.append(column * scalar)
+        multipled_matrix.append(row_list)
+        
+    return multipled_matrix
+
+
+def identity_matrix(matrix):
+    """
+    Method that creates a identity matrix, which has a 1 in the same position vertically 
+    and horizontally and a 0 in the rest of the identity matrix. The size of the 
+    identity matrix depends on the size of the matrix used as a parameter.
+    """
+    size = len(matrix)
+    # Check if the matrix's size is even
+    if size % 2 != 0:
+        return "The matrix's size is not even"
+    
+    identity_matrix = []
+    
+    for row in range(size):
+        row_identity = []
+        for column in range(size):
+            row_identity.append(0)
+        identity_matrix.append(row_identity)
+
+    for i in range(size):
+        identity_matrix[i][i] = 1
+        
+    return identity_matrix
