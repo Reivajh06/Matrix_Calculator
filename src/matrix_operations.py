@@ -83,8 +83,37 @@ def subtract(matrix1, matrix2):
         subtract_result.append(result_row)
     return subtract_result
 
+def multiply(matrix1, matrix2):
+    """
+    Method which multiplies two matrixes using the normal procedure.
+    There must be the same number of columns in matrix1 as there are rows in matrix2
+    """
+    rows_1 = len(matrix1)
+    columns_1 = len(matrix1[0])
+    rows_2 = len(matrix2)
+    columns_2 = len(matrix2[0])
+    if columns_1 != rows_2:
+        result = 'These two matrices cannot be multiplied'
+        return result
+    result = [[0 for number_2 in range(columns_2)] for number_1 in range(rows_1)]
+    for num_row1 in range(rows_1):
+        for num_col2 in range(columns_2):
+            for num_col1 in range(columns_1):
+                result[num_row1][num_col2] += matrix1[num_row1][num_col1] * matrix2[num_col1][num_col2]
+    return result
 
-
+def transposed(matrix):
+    """
+    Method which calculates the transposed maatrix of a matrix
+    """
+    rows_trans = len(matrix[0])
+    columns_trans = len(matrix)
+    transposed_matrix = [[0] * columns_trans for number in range(rows_trans)]
+    for num_row in range(rows_trans):
+        for num_col in range(columns_trans):
+            transposed_matrix[num_row][num_col] = matrix[num_col][num_row]
+    return transposed_matrix
+                    
 def trace(matrix):
     """
     Method which evaluate the trace of a square matrix
