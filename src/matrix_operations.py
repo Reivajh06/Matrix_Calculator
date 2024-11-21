@@ -102,7 +102,7 @@ def multiply(matrix1, matrix2):
                 result[num_row1][num_col2] += matrix1[num_row1][num_col1] * matrix2[num_col1][num_col2]
     return result
 
-def transposed(matrix):
+def transpose(matrix):
     """
     Method which calculates the transposed maatrix of a matrix
     """
