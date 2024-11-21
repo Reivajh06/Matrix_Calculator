@@ -54,6 +54,9 @@ def create_matrix():
 
 def add(matrix1, matrix2):
     ''' Method which adds a matrix to another one using the normal procedure, the elements in the same position add to make the element in the result matrix'''
+    if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
+        print("Error: The dimensions of the matrices do not match, cannot add.")
+        return None 
 
     rows = len(matrix1)
     columns = len(matrix1[0])
@@ -70,6 +73,9 @@ def add(matrix1, matrix2):
 
 def subtract(matrix1, matrix2):
     ''' Method which subtracts a matrix to another one using the normal procedure, the elements in the same position subtract to make the element in the result matrix'''
+    if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
+        print("Error: The dimensions of the matrices do not match, cannot add.")
+        return None 
 
     rows = len(matrix1)
     columns = len(matrix1[0])
