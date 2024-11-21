@@ -1,6 +1,5 @@
 from src.matrix_operations import *
-import re
-import ollama
+from ai import explain_with_ai, ai_is_available
 
 
 NUM_MATRICES_BY_OPERATION = {
@@ -47,6 +46,10 @@ def create_matrix_based_on_operation(number_of_matrices=1):
 
 
 def run_calculator(user_operation):
+    if user_operation not in NUM_MATRICES_BY_OPERATION:
+        print(f"Unknown operation {user_operation}")
+        return
+
     matrices = create_matrix_based_on_operation(NUM_MATRICES_BY_OPERATION[user_operation])
 
     result = calculate(user_operation, matrices)
@@ -56,25 +59,11 @@ def run_calculator(user_operation):
 
     print_matrix(result)
 
-    user_help = input("Do you need an explanation for the operation result from the AI?: yes/no ")
+    if ai_is_available():
+        user_help = input("Do you need an explanation for the operation result from the AI?: yes/no ")
 
-    if user_help == 'yes':
-        input_matrices = f"{matrices[0]} {matrices[1]}" if isinstance(matrices, tuple) else str(matrices)
-
-        prompt = f"""
-        You're a Teacher AI that excels at matrix operations.
-        
-        Explain the result of the operation {user_operation} step by step:
-        
-        {input_matrices} = {result}
-        
-        Answer in a friendly way in plain text only. Represent matrices in a pretty way
-        """
-
-        response = ollama.generate(model='qwen2-math:7b-instruct-q8_0', prompt=prompt, stream=True)
-
-        for part in response:
-            print(part["response"], end='')
+        if user_help == 'yes':
+            explain_with_ai(user_operation, matrices, result)
 
 
 
