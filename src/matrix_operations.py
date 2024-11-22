@@ -196,9 +196,6 @@ def identity_matrix(matrix):
     identity matrix depends on the size of the matrix used as a parameter.
     """
     size = len(matrix)
-    # Check if the matrix's size is even
-    if size % 2 != 0:
-        return "The matrix's size is not even"
     
     identity_matrix = []
     
