@@ -196,6 +196,8 @@ def identity_matrix(matrix):
     identity matrix depends on the size of the matrix used as a parameter.
     """
     size = len(matrix)
+    if size != len(size):
+        return "The matrix's columns and rows have different sizes"
     
     identity_matrix = []
     
