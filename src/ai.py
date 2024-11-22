@@ -24,9 +24,13 @@ def explain_with_ai(user_operation, matrices, result):
 
     response = ollama.generate(model=LLM_MODEL, prompt=prompt, stream=True)
 
+    print("\x1b[34m 🤖📖 AI Teacher:")
+
     for part in response:
         print(part["response"], end='')
-        time.sleep(0.1)
+        time.sleep(0.01)
+
+    print("\x1b[0m")
 
 def ai_is_available():
     try:

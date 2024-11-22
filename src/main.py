@@ -9,6 +9,8 @@ NUM_MATRICES_BY_OPERATION = {
     'transpose': 1,
     'trace': 1,
     'determinant': 1,
+    'scalar multiplication': 1,
+    'matrix identity': 0
 }
 
 
@@ -30,6 +32,14 @@ def calculate(user_operation, matrices):
 
     elif user_operation == 'determinant':
         return determinant(matrices)
+
+    elif user_operation == 'scalar multiplication':
+        scalar_value = float(input("Indicate the scalar value for the operation: "))
+
+        return multiply_scalar(matrices, scalar_value)
+
+    elif user_operation == 'identity matrix':
+        return identity_matrix(matrices)
 
     else:
         raise ValueError("Unknown operation")
